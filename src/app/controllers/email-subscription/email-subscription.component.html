@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 text-center">
+      <img src="assets/img/envelope-v.svg" />
+      <h4 class="my-3">Never miss a deal.</h4>
+      <p>
+        Subscribe to see hot deals first (while they're still hot), plus feature
+        updates and more.
+      </p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-8 text-center">
+      <form [formGroup]="newsletterFrom">
+        <input
+          matInput
+          type="email"
+          class="form-control"
+          placeholder="Enter your email address"
+          formControlName="emailControl"
+          [ngClass]="{
+            'input-error':
+              newsletterFrom.get('emailControl').invalid &&
+              (newsletterFrom.get('emailControl').dirty ||
+                newsletterFrom.get('emailControl').touched)
+          }"
+        />
+        <div
+          *ngIf="
+            newsletterFrom.get('emailControl').invalid &&
+            (newsletterFrom.get('emailControl').dirty ||
+              newsletterFrom.get('emailControl').touched)
+          "
+          class="text-error"
+        >
+          <div *ngIf="newsletterFrom.get('emailControl').hasError('email') && !newsletterFrom.get('emailControl').hasError('required')">
+            Please enter a valid email address
+          </div>
+          <div *ngIf="newsletterFrom.get('emailControl').hasError('required')">
+            Email is required
+          </div>
+        </div>
+        <div *ngIf="newsletterResponse">
+          <div [ngClass]="{'text-success': newsletterResponse.code == '200', 'text-error': newsletterResponse.code != '200'}">
+            {{newsletterResponse.message}}
+          </div>
+        </div>
+        <button class="btn btn-primary mt-3" type="button" (click)="subscribeToNewsletter()">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-inline-block mb-1">
+  <img
+    src="/assets/img/garmin.com.jpg"
+    class="float-left img-thumbnail mr-3 mb-3"
+    alt="Garmin coupon code"
+  />
+  <h4 class="pt-3">20% discount on purchases up to $1000</h4>
+</div>
+
+<div class="row justify-content-center my-3">
+  <div class="col-10">
+    Take control of your boat right from your wrist. Quatix 6X Solar Titanium
+    with Titanium Band offer for $1,149.99
+  </div>
+</div>
+
+<div class="row justify-content-center my-3">
+  <div class="col-10 text-center">
+    <form [formGroup]="cuponCodeFrom">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          readonly="readonly"
+          formControlName="cuponCodeControl"
+        />
+        <div class="input-group-append">
+          <button class="btn" [ngClass]="{'btn-primary': !isCopied, 'btn-success': isCopied}" type="button" (click)="copyCouponCode()">
+              <span *ngIf="!isCopied">Copy code</span>
+              <span *ngIf="isCopied">Code copied</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
